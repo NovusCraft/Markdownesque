@@ -3,7 +3,7 @@
 
 namespace Markdownesque.Analysis.Tokens
 {
-	internal sealed class LineBreakToken : Token
+	internal sealed class EmphasisToken : Token
 	{
 	}
 }

@@ -6,7 +6,7 @@ using Machine.Specifications;
 namespace Markdownesque.Specifications.CompilerSpecs
 {
 	[Subject(typeof(Compiler))]
-	public class when_string_with_2_paragraphs_is_compiled : compiler_spec
+	public class when_2_paragraphs_are_compiled : compiler_spec
 	{
 		static string output;
 		Because of = () => output = compiler.Compile(string.Format("text1\n\ntext2"));
