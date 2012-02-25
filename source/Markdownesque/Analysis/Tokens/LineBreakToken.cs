@@ -5,5 +5,9 @@ namespace Markdownesque.Analysis.Tokens
 {
 	internal sealed class LineBreakToken : Token
 	{
+		public override string ToString()
+		{
+			return "<br />";
+		}
 	}
 }

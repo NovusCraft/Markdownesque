@@ -42,5 +42,10 @@ namespace Markdownesque.Emit
 				renderTarget.Append(renderer.RenderClosingTag(token));
 			}
 		}
+
+		public override string ToString()
+		{
+			return string.Format("{0} token renderers", _renderers.Count);
+		}
 	}
 }

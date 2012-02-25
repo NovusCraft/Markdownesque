@@ -42,5 +42,10 @@ namespace Markdownesque.Analysis
 
 			return rootToken;
 		}
+
+		public override string ToString()
+		{
+			return string.Format("{0} parser rules", _rules.Count);
+		}
 	}
 }

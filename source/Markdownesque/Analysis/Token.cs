@@ -12,6 +12,7 @@ namespace Markdownesque.Analysis
 			Children = new List<Token>();
 		}
 
+		internal bool Closed { get; set; }
 		internal Token Parent { get; private set; }
 		internal List<Token> Children { get; private set; }
 

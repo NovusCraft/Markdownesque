@@ -9,20 +9,25 @@ namespace Markdownesque.Optimisation
 {
 	internal sealed class Optimiser
 	{
-		readonly IList<OptimisationRule> _optimisationRules;
+		readonly IList<OptimisationRule> _rules;
 
 		internal Optimiser()
 		{
-			_optimisationRules = new List<OptimisationRule>();
-			_optimisationRules.Add(new MultipleLineBreakRule());
+			_rules = new List<OptimisationRule>();
+			_rules.Add(new MultipleLineBreakRule());
 		}
 
 		internal RootToken Optimise(RootToken rootToken)
 		{
-			foreach (var optimisationRule in _optimisationRules)
+			foreach (var optimisationRule in _rules)
 				optimisationRule.Apply(rootToken);
 
 			return rootToken;
+		}
+
+		public override string ToString()
+		{
+			return string.Format("{0} optimiser rules", _rules.Count);
 		}
 	}
 

@@ -19,5 +19,10 @@ namespace Markdownesque.Analysis.Tokens
 		{
 			Content.Append(character);
 		}
+
+		public override string ToString()
+		{
+			return string.Format("{0} characters", Content.Length);
+		}
 	}
 }
