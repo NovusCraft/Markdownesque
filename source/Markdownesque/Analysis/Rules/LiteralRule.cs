@@ -24,6 +24,7 @@ namespace Markdownesque.Analysis.Rules
 			{
 				var token = new LiteralToken(character);
 				parentToken.AddChild(token);
+				previousToken = token;
 			}
 
 			return true;

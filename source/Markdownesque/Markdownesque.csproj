@@ -56,6 +56,7 @@
     <Compile Include="Emit\Renderers\EmphasisRenderer.cs" />
     <Compile Include="Emit\Renderers\LiteralRenderer.cs" />
     <Compile Include="Emit\Renderers\LineBreakRenderer.cs" />
+    <Compile Include="Optimisation\Rules\RemoveRedundantLineBreakRule.cs" />
     <Compile Include="Optimisation\OptimisationRule.cs" />
     <Compile Include="Optimisation\Optimiser.cs" />
     <Compile Include="Emit\Renderers\ParagraphRenderer.cs" />

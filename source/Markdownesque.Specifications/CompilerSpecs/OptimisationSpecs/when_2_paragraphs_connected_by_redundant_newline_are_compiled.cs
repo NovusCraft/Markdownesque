@@ -11,7 +11,7 @@ namespace Markdownesque.Specifications.CompilerSpecs.OptimisationSpecs
 		static string output;
 		Because of = () => output = compiler.Compile(string.Format("text1\n\n\ntext2"));
 
-		It should_return_2_html_paragraphs_with_no_connecting_html_break =
+		It should_return_2_html_paragraphs_with_no_html_line_break =
 			() => output.ShouldEqual("<p>text1</p><p>text2</p>");
 	}
 }

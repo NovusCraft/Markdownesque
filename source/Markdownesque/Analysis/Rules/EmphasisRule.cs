@@ -1,6 +1,7 @@
 // # Copyright © 2011-2012, Novus Craft
 // # All rights reserved. 
 
+using System;
 using Markdownesque.Analysis.Tokens;
 
 namespace Markdownesque.Analysis.Rules
@@ -14,12 +15,28 @@ namespace Markdownesque.Analysis.Rules
 
 		internal override bool Apply(char character, ref Token parentToken, ref Token previousToken)
 		{
-			var token = new EmphasisToken();
-			parentToken.AddChild(token);
-			parentToken = token;
-			previousToken = token;
+			var previousEmphasisToken = FindAncestorToken(parentToken, token => token is EmphasisToken);
+			if (previousEmphasisToken != null && previousEmphasisToken.Closed == false)
+			{
+				previousToken.Closed = true;
+			}
+			else
+			{
+				var token = new EmphasisToken();
+				parentToken.AddChild(token);
+				parentToken = token;
+				previousToken = token;
+			}
 
 			return true;
+		}
+
+		static Token FindAncestorToken(Token searchTarget, Func<Token, bool> predicate)
+		{
+			if (predicate(searchTarget))
+				return searchTarget;
+
+			return searchTarget.Parent != null ? FindAncestorToken(searchTarget.Parent, predicate) : null;
 		}
 	}
 }

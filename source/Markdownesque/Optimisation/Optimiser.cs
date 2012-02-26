@@ -2,8 +2,8 @@
 // # All rights reserved. 
 
 using System.Collections.Generic;
-using Markdownesque.Analysis;
 using Markdownesque.Analysis.Tokens;
+using Markdownesque.Optimisation.Rules;
 
 namespace Markdownesque.Optimisation
 {
@@ -14,7 +14,7 @@ namespace Markdownesque.Optimisation
 		internal Optimiser()
 		{
 			_rules = new List<OptimisationRule>();
-			_rules.Add(new MultipleLineBreakRule());
+			_rules.Add(new RemoveRedundantLineBreakRule());
 		}
 
 		internal RootToken Optimise(RootToken rootToken)
@@ -28,36 +28,6 @@ namespace Markdownesque.Optimisation
 		public override string ToString()
 		{
 			return string.Format("{0} optimiser rules", _rules.Count);
-		}
-	}
-
-	internal sealed class MultipleLineBreakRule : OptimisationRule
-	{
-		internal override void Apply(RootToken rootToken)
-		{
-			ApplyImpl(rootToken);
-		}
-
-		void ApplyImpl(Token rootToken)
-		{
-			for (int i = 0; i < rootToken.Children.Count; i++)
-			{
-				//var token = rootToken.Children[i];
-
-				//if (IsLineBreakToken(token))
-				//{
-				//    var lineBreakTokenCount = 1;
-				//    while (IsLineBreakToken(rootToken.Children[i + lineBreakTokenCount]))
-				//        lineBreakTokenCount++;
-				//}
-
-				//ApplyImpl(token);
-			}
-		}
-
-		static bool IsLineBreakToken(Token token)
-		{
-			return false; //return (token is ElementToken) && (token as ElementToken).ElementName == "br";
 		}
 	}
 }
