@@ -19,7 +19,12 @@ namespace Markdownesque.Optimisation.Rules
 			{
 				var token = rootToken.Children[i];
 
-				if (token is LineBreakToken && token.Parent.Children.IndexOf(token) == 0)
+				if (token is LineBreakToken
+				    && (
+				       	token.Parent.Children.IndexOf(token) == 0
+				       	|| token.Parent.Children.IndexOf(token) == token.Parent.Children.Count - 1
+				       )
+					)
 					token.Parent.RemoveChild(token);
 
 				ApplyImpl(token);

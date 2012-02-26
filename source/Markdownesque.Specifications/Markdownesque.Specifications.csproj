@@ -39,6 +39,7 @@
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="CompilerSpecs\compiler_spec.cs" />
+    <Compile Include="CompilerSpecs\when_article_is_compiled.cs" />
     <Compile Include="CompilerSpecs\when_emphasis_markup_is_compiled.cs" />
     <Compile Include="CompilerSpecs\OptimisationSpecs\when_2_paragraphs_connected_by_redundant_newline_are_compiled.cs" />
     <Compile Include="CompilerSpecs\when_1_paragraph_containing_newline_is_compiled.cs" />
