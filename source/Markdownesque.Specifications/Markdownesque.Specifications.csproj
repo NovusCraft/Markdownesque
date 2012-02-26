@@ -39,12 +39,16 @@
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="CompilerSpecs\compiler_spec.cs" />
-    <Compile Include="CompilerSpecs\when_article_is_compiled.cs" />
-    <Compile Include="CompilerSpecs\when_emphasis_markup_is_compiled.cs" />
-    <Compile Include="CompilerSpecs\OptimisationSpecs\when_2_paragraphs_connected_by_redundant_newline_are_compiled.cs" />
-    <Compile Include="CompilerSpecs\when_1_paragraph_containing_newline_is_compiled.cs" />
-    <Compile Include="CompilerSpecs\when_2_paragraphs_are_compiled.cs" />
-    <Compile Include="CompilerSpecs\when_1_paragraph_is_compiled.cs" />
+    <Compile Include="CompilerSpecs\EmphasisSpecs\when_paragraph_with_emphasis_containing_line_break_is_compiled.cs" />
+    <Compile Include="CompilerSpecs\EmphasisSpecs\when_paragraph_with_leading_emphasis_is_compiled.cs" />
+    <Compile Include="CompilerSpecs\EmphasisSpecs\when_paragraph_with_emphasis_is_compiled.cs" />
+    <Compile Include="CompilerSpecs\EmphasisSpecs\when_paragraph_with_trailing_emphasis_is_compiled.cs" />
+    <Compile Include="CompilerSpecs\LineBreakSpecs\when_paragraph_with_trailing_line_break_is_compiled.cs" />
+    <Compile Include="CompilerSpecs\LineBreakSpecs\when_paragraph_with_line_break_is_compiled.cs" />
+    <Compile Include="CompilerSpecs\ParagraphSpecs\when_2_paragraphs_connected_by_redundant_newline_are_compiled.cs" />
+    <Compile Include="CompilerSpecs\LineBreakSpecs\when_paragraph_with_leading_line_break_is_compiled.cs" />
+    <Compile Include="CompilerSpecs\ParagraphSpecs\when_2_paragraphs_are_compiled.cs" />
+    <Compile Include="CompilerSpecs\ParagraphSpecs\when_paragraph_is_compiled.cs" />
     <Compile Include="CompilerSpecs\when_empty_string_is_compiled.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

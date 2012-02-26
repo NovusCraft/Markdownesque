@@ -19,6 +19,8 @@ namespace Markdownesque.Analysis.Rules
 			if (previousEmphasisToken != null && previousEmphasisToken.Closed == false)
 			{
 				previousToken.Closed = true;
+				parentToken = parentToken.Parent;
+				previousToken = previousEmphasisToken;
 			}
 			else
 			{
