@@ -21,6 +21,7 @@ namespace Markdownesque.Emit
 			_renderers.Add(new LiteralRenderer());
 			_renderers.Add(new LineBreakRenderer());
 			_renderers.Add(new EmphasisRenderer());
+			_renderers.Add(new StrongRenderer());
 		}
 
 		internal string GenerateHtml(RootToken rootToken)

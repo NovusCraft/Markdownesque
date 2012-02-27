@@ -1,19 +1,18 @@
 // # Copyright © 2011-2012, Novus Craft
 // # All rights reserved. 
 
-using System;
 using Markdownesque.Analysis.Tokens;
 
 namespace Markdownesque.Analysis.Rules
 {
 	internal sealed class EmphasisRule : ParserRule
 	{
-		internal override bool AppliesTo(char character, ref Token parentToken, ref Token previousToken)
+		internal override bool AppliesTo(StringReader reader, ref Token parentToken, ref Token previousToken)
 		{
-			return character == '*';
+			return reader.CurrentChar == '*' && reader.NextChar != '*';
 		}
 
-		internal override bool Apply(char character, ref Token parentToken, ref Token previousToken)
+		internal override bool Apply(StringReader reader, ref Token parentToken, ref Token previousToken)
 		{
 			var previousEmphasisToken = FindAncestorToken(parentToken, token => token is EmphasisToken);
 			if (previousEmphasisToken != null && previousEmphasisToken.Closed == false)
@@ -31,14 +30,6 @@ namespace Markdownesque.Analysis.Rules
 			}
 
 			return true;
-		}
-
-		static Token FindAncestorToken(Token searchTarget, Func<Token, bool> predicate)
-		{
-			if (predicate(searchTarget))
-				return searchTarget;
-
-			return searchTarget.Parent != null ? FindAncestorToken(searchTarget.Parent, predicate) : null;
 		}
 	}
 }

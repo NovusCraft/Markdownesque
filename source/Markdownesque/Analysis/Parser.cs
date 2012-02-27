@@ -19,6 +19,7 @@ namespace Markdownesque.Analysis
 			_rules.Add(new LiteralRule());
 			_rules.Add(new LineBreakRule());
 			_rules.Add(new EmphasisRule());
+			_rules.Add(new StrongRule());
 		}
 
 		internal RootToken Parse(string source)
@@ -30,13 +31,14 @@ namespace Markdownesque.Analysis
 			Token parentToken = rootToken;
 			Token previousToken = null;
 
-			foreach (var character in source.ToCharArray())
+			var reader = new StringReader(source);
+			while (reader.Advance())
 			{
 				bool evaluationComplete;
 				do
 				{
-					var matchingRule = _rules.First(r => r.AppliesTo(character, ref parentToken, ref previousToken));
-					evaluationComplete = matchingRule.Apply(character, ref parentToken, ref previousToken);
+					var matchingRule = _rules.First(r => r.AppliesTo(reader, ref parentToken, ref previousToken));
+					evaluationComplete = matchingRule.Apply(reader, ref parentToken, ref previousToken);
 				} while (evaluationComplete == false);
 			}
 

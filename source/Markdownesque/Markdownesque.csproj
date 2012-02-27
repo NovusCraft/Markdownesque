@@ -37,9 +37,12 @@
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Analysis\ParserRule.cs" />
+    <Compile Include="Analysis\Rules\StrongRule.cs" />
     <Compile Include="Analysis\Rules\EmphasisRule.cs" />
     <Compile Include="Analysis\Rules\ParagraphRule.cs" />
     <Compile Include="Analysis\Rules\LineBreakRule.cs" />
+    <Compile Include="Analysis\StringReader.cs" />
+    <Compile Include="Analysis\Tokens\StrongToken.cs" />
     <Compile Include="Analysis\Tokens\EmphasisToken.cs" />
     <Compile Include="Analysis\Tokens\LineBreakToken.cs" />
     <Compile Include="Analysis\Tokens\ParagraphToken.cs" />
@@ -53,6 +56,7 @@
     <Compile Include="Analysis\Token.cs" />
     <Compile Include="Compiler.cs" />
     <Compile Include="Emit\Generator.cs" />
+    <Compile Include="Emit\Renderers\StrongRenderer.cs" />
     <Compile Include="Emit\Renderers\EmphasisRenderer.cs" />
     <Compile Include="Emit\Renderers\LiteralRenderer.cs" />
     <Compile Include="Emit\Renderers\LineBreakRenderer.cs" />

@@ -7,28 +7,27 @@ namespace Markdownesque.Analysis.Rules
 {
 	internal sealed class ParagraphRule : ParserRule
 	{
-		internal override bool AppliesTo(char character, ref Token parentToken, ref Token previousToken)
+		internal override bool AppliesTo(StringReader reader, ref Token parentToken, ref Token previousToken)
 		{
-			return previousToken == null || (previousToken is LineBreakToken && character == '\n');
+			return previousToken == null || (reader.CurrentChar == '\n' && reader.NextChar == '\n');
 		}
 
-		internal override bool Apply(char character, ref Token parentToken, ref Token previousToken)
+		internal override bool Apply(StringReader reader, ref Token parentToken, ref Token previousToken)
 		{
 			var token = new ParagraphToken();
 
-			if (previousToken is LineBreakToken && character == '\n')
+			if (reader.NextChar == '\n')
 			{
-				// remove existing LineBreakToken
-				parentToken.RemoveChild(previousToken);
-
+				reader.Advance(2);
 				parentToken.Parent.AddChild(token);
 				parentToken = token;
-				previousToken = token;
-				return true;
+			}
+			else
+			{
+				parentToken.AddChild(token);
+				parentToken = token;
 			}
 
-			parentToken.AddChild(token);
-			parentToken = token;
 			previousToken = token;
 			return false;
 		}

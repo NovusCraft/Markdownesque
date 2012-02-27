@@ -5,26 +5,31 @@ using Markdownesque.Analysis.Tokens;
 
 namespace Markdownesque.Analysis.Rules
 {
-	internal sealed class LiteralRule : ParserRule
+	internal sealed class StrongRule : ParserRule
 	{
 		internal override bool AppliesTo(StringReader reader, ref Token parentToken, ref Token previousToken)
 		{
-			return IsReservedCharacter(reader.CurrentChar) == false;
+			return reader.CurrentChar == '*' && reader.NextChar == '*';
 		}
 
 		internal override bool Apply(StringReader reader, ref Token parentToken, ref Token previousToken)
 		{
-			var temp = previousToken as LiteralToken;
-			if (temp != null)
+			var previousStrongToken = FindAncestorToken(parentToken, token => token is StrongToken);
+			if (previousStrongToken != null && previousStrongToken.Closed == false)
 			{
-				temp.AddChar(reader.CurrentChar);
+				previousToken.Closed = true;
+				parentToken = parentToken.Parent;
+				previousToken = previousStrongToken;
 			}
 			else
 			{
-				var token = new LiteralToken(reader.CurrentChar);
+				var token = new StrongToken();
 				parentToken.AddChild(token);
+				parentToken = token;
 				previousToken = token;
 			}
+
+			reader.Advance();
 
 			return true;
 		}
